@@ -8,7 +8,7 @@ let app = express();
 
 // additional imports
 
-
+// var cors = require('cors')
 
 
 // basic middlewares
@@ -22,7 +22,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-
+// additional middlewares
+// app.use(cors());
 
 //routers
 let authRouter = require('./routes/auth');
@@ -44,5 +45,5 @@ app.use('/auth', authRouter);
     res.status(err.status || 500);
     res.render('error');
   });
-
+app.listen(3006)
 module.exports = app;

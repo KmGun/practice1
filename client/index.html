@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./style.css">
-    <!-- 서버주소 : localhost:3006 -->
+    <!-- server주소 : localhost:3006 -->
 </head>
 <body>
     <div class="clock" id="jsClockContainer">
@@ -16,7 +16,7 @@
         <button id = 'jsDarkModeBtn' class="darkModeBtn">DARK</button>
     </div>
     <div class="login">
-        <form action = "http://localhost:3006" method="post">
+        <form action = "http://localhost:3006/auth/" method="post">
             <p>
                 <input class= "login__id" type="text" name="id" id="jsId" placeholder="Enter Your Id">
             </p>
@@ -24,11 +24,11 @@
                 <input class= "login__pw" type="password" name="pw" id="jsPw" placeholder="Enter Your Pw">
             </p>
             <p>
-                <input id = 'jsSubmit' type="submit" value="로그인">
+                <input id = 'jsSubmit' class= 'darkStyle' type="submit" value="로그인">
             </p>
         </form>
     </div>
-    
+    <a href="http://localhost:3006/auth/test">쿠키 테스트</a>    
     <!-- <div class="toDo">
         <form>
             <input type="text" placeholder="오늘의 할일">
