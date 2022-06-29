@@ -1,14 +1,13 @@
 // basic imports
-let createError = require('http-errors');
-let express = require('express');
-let path = require('path');
-let cookieParser = require('cookie-parser');
-let logger = require('morgan');
-let app = express();
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const app = express();
 
 // additional imports
-
-// var cors = require('cors')
+const cors = require('cors')
 
 
 // basic middlewares
@@ -23,11 +22,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // additional middlewares
-// app.use(cors());
+app.use(cors())
 
 //routers
-let authRouter = require('./routes/auth');
+const authRouter = require('./routes/auth');
+const dataRouter = require('./routes/data');
 app.use('/auth', authRouter);
+app.use('/data', dataRouter);
 
 // ERR handlers
   // 404
