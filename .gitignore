@@ -1,2 +1,3 @@
 server/sessions
 server/node_modules
+server/secret

@@ -5,10 +5,12 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const app = express();
+const session = require('express-session');
 
 // additional imports
 const cors = require('cors')
-
+const MySQLStore = require('express-mysql-session')(session);
+const mysqlSecret = require("./secret/mysql.json");
 
 // basic middlewares
 app.set('views', path.join(__dirname, 'views'));
@@ -19,7 +21,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+  // session settings
+  const options = {
+    host: mysqlSecret.host,
+    port: 3306,
+    user: mysqlSecret.user,
+    password: mysqlSecret.password,
+    database: mysqlSecret.database
+  };
+  const sessionStore = new MySQLStore(options);
+  app.use(session({
+    key: 'session_cookie_name',
+    secret: 'session_cookie_secret',
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: false
+  }));
 
 // additional middlewares
 app.use(cors())
@@ -29,6 +46,14 @@ const authRouter = require('./routes/auth');
 const dataRouter = require('./routes/data');
 app.use('/auth', authRouter);
 app.use('/data', dataRouter);
+
+//pages
+app.get('/test',function(req,res){
+  console.log(req.session);
+})
+
+
+
 
 // ERR handlers
   // 404
