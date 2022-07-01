@@ -31,8 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
   };
   const sessionStore = new MySQLStore(options);
   app.use(session({
-    key: 'session_cookie_name',
-    secret: 'session_cookie_secret',
+    secret: 'sklfjlas@#$#@$sdlfk',
     store: sessionStore,
     resave: false,
     saveUninitialized: false

@@ -16,7 +16,7 @@
         <button id = 'jsDarkModeBtn' class="darkModeBtn">DARK</button>
     </div>
     <div class="login">
-        <form action = "http://localhost:3006/auth/" method="post">
+        <form action = "http://localhost:3006/auth/login" method="post">
             <p>
                 <input class= "login__id" type="text" name="id" id="jsId" placeholder="Enter Your Id">
             </p>
@@ -25,9 +25,14 @@
             </p>
             <p class="login__authBtn">
                 <input id = 'jsLogin' type="submit" value="로그인">
-                <button id = 'jsSignUp'>회원가입</button>
             </p>
         </form>
+        <a href="http://localhost:3006/auth/register">
+            <button>회원가입</button>
+        </a> 
+    </div>
+    <div class="register">
+        
     </div>
     <a href="http://localhost:3006/auth/test">쿠키 테스트</a>    
 
