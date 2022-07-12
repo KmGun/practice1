@@ -1,6 +1,7 @@
 import JSbgImg from "../js/bgImg.js"
 import JSclock from "../js/clock.js"
 import JSdarkMode from "../js/darkMode.js"
+import jsRegister from "../js/register.js"
 
 
 export default class {
@@ -15,21 +16,24 @@ export default class {
             <div class="darkModeCon">
                 <button id = 'jsDarkModeBtn' class="darkModeBtn">DARK</button>
             </div>
-            <div class="login" id="jsLogin">
-                <form action = "http://localhost:3006/auth/register" method="post">
+            <div class="register" id="jsRegister">
                     <p>
                         <input class= "register__id" type="text" name="id" id="jsId" placeholder="Enter Your Id">
+                        <button class= "register__IdOverlapCheck"id ="jsIdOverlapCheckBtn">중복확인</button>   
                     </p>
+                    <br>
                     <p>
                         <input class= "register__pw" type="password" name="pw" id="jsPw" placeholder="Enter Your Pw">
                     </p>
+                    <br>
                     <p>
                         <input class= "register__pw2" type="password" name="pw2" id="jsPw2" placeholder="Enter Your Pw Again">
                     </p>
+                    <br>
+
                     <p class="register__authBtn">
-                        <input id = 'jsRegister' type="submit" value="회원가입">
+                        <input id = 'jsRegisterBtn' type="submit" value="회원가입">
                     </p>
-                </form>
             </div>
         `;
     }
@@ -38,6 +42,7 @@ export default class {
         JSbgImg();
         JSclock();
         JSdarkMode();
+        jsRegister();
 
         
     }

@@ -2,6 +2,7 @@ import JSbgImg from "../js/bgImg.js"
 import JSclock from "../js/clock.js"
 import JSdarkMode from "../js/darkMode.js"
 import JSlogin from "../js/login.js"
+
 export default class {
     constructor() {
         document.title = "home";
@@ -20,9 +21,11 @@ export default class {
                 <p>
                     <input class= "login__id" type="text" name="id" id="jsId" placeholder="Enter Your Id">
                 </p>
+                <br>
                 <p>
                     <input class= "login__pw" type="password" name="pw" id="jsPw" placeholder="Enter Your Pw">
                 </p>
+                <br>
                 <p class="login__authBtn">
                     <input id = 'jsLogin' type="submit" value="로그인">
                 </p>

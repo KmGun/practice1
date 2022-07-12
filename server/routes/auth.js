@@ -33,8 +33,22 @@ router.post('/login', function(req, res, next) {
     res.cookie('userId', loginData.id, {
         httpOnly:true
    });
-    res.redirect('http://localhost:5500/client/')
+    res.redirect('http://localhost:3006/home/')
 });
+
+
+router.post('/register',function(req,res,next){
+    const loginData = req.body;
+    // 중복체크 구현해야함.
+    res.send('회원가입 완료^^')
+
+})
+
+
+
+
+
+
 
 router.get('/test',function(req,res){
     // var cookies = cookie.parse(req.headers.cookie || '');

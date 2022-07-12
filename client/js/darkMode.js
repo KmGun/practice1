@@ -1,4 +1,4 @@
-export default function bgImg(){
+export default function darkMode(){
 
 
     const body = document.querySelector('body');

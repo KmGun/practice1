@@ -1,7 +1,7 @@
-export default function bgImg(){
+export default function login(){
 
 
     const login = document.getElementById('jsLogin');
-    const signUp = document.getElementById('jsSignUp');
+
 
 }
