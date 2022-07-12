@@ -1,3 +1,7 @@
+import JSbgImg from "../js/bgImg.js"
+import JSclock from "../js/clock.js"
+import JSdarkMode from "../js/darkMode.js"
+import JSlogin from "../js/login.js"
 export default class {
     constructor() {
         document.title = "home";
@@ -33,28 +37,13 @@ export default class {
         <a href="http://localhost:3006/auth/test">쿠키 테스트</a>   
         `;
     }
-    async inputScriptTags(){
-        let i = 0;
-        const scriptlist = ['/js/clock.js','/js/darkMode.js','/js/login.js','/js/bgImg.js'];
-        const jsRouter = document.getElementById('jsRouter');
+    async executeJS(){
+        //JSs to execute
+        JSbgImg();
+        JSclock();
+        JSdarkMode();
+        JSlogin();
 
-        // delete old script tags
-        while (jsRouter.nextElementSibling){
-            jsRouter.nextElementSibling.remove
-        };
-
-
-        // make script tags
-        if (!jsRouter.nextElementSibling){
-            while (i<scriptlist.length){
-                let scr = document.createElement('script');
-                scr.src = scriptlist[i];
-                scr.type = 'module';
-                document.getElementById('jsRouter').after(scr);
-                i++;
-            }
-            
-        }
         
     }
 }

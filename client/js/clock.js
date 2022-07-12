@@ -1,3 +1,5 @@
+export default function clock(){
+    
     const clockContainer = document.getElementById('jsClockContainer'),
         clockTitle = document.getElementById('jsClockTitle');
 
@@ -26,7 +28,7 @@
 
     init();
 
-
+}
 
 
 

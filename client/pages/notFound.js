@@ -1,6 +1,6 @@
 export default class {
     constructor() {
-        document.title = "home";
+        document.title = "404 not found";
         }
 
     async getHtml() {
