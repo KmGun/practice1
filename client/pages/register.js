@@ -19,7 +19,7 @@ export default class {
             <div class="register" id="jsRegister">
                     <p>
                         <input class= "register__id" type="text" name="id" id="jsId" placeholder="Enter Your Id">
-                        <button class= "register__IdOverlapCheck"id ="jsIdOverlapCheckBtn">중복확인</button>   
+                        <button class= "register__IdOverlapCheck" id ="jsIdOverlapCheckBtn">중복확인</button>   
                     </p>
                     <br>
                     <p>

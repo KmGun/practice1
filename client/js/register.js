@@ -57,46 +57,79 @@ export default function register(){
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             };
-            //3. fetch
-            await fetch('http://localhost:3006/auth/registerBtn',reqOptions)
+            //3. overlap checking
+            const isIdOverlap = await fetch('http://localhost:3006/auth/register/idoverlapcheck',reqOptions)
                     .then(response => response.json())
-                    .then(dat => dat);
+                    .then(dat =>  dat.isIdOverlap);
+            return isIdOverlap;
+        };
 
+        function alertResult(isIdOverlap){
+            if (isIdOverlap){
+                alert('Id가 이미 존재합니다.');
+            } else {
+                alert('Id가 사용 가능합니다.')
+            }
         };
 
 
+////////////////////////// main code ///////////////////////////////
+
     // overlap check &format validity check & fetch to server
+        let overlapCheckStatus = false;
+        let isIdOverlap = false;
         // overlap check
-        idOverlapCheckBtn.addEventListener('click',idOverlapCheck)
+        idOverlapCheckBtn.addEventListener('click',async function(){
+            isIdOverlap = await idOverlapCheck();
+            alertResult(isIdOverlap);
+            overlapCheckStatus = true;
+        })
         
-
-
-
+        id.addEventListener('input',function(){
+            overlapCheckStatus = false;
+            isIdOverlap = false;
+        })
         // format validity check
-        registerBtn.addEventListener('click',function(){
-            // 0. make registerData to JSON
-            const registerData = {
-                'id' : id.value,
-                'pw' : pw.value
-            };
-            // 0. set reqOptions
-            const reqOptions = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(registerData)
-            };
+            
+            registerBtn.addEventListener('click',async function(){
+                if (overlapCheckStatus && !isIdOverlap){
+                    // 1. make registerData to JSON
+                    const registerData = {
+                        'id' : id.value,
+                        'pw' : pw.value
+                    };
+                    // 2. set reqOptions
+                    const reqOptions = {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(registerData)
+                    };
+        
+                    // 3. vailidity check => fetch to server 
+                    if (isVaild()){
+                        const isRegisterSuccessed = await fetch('http://localhost:3006/auth/register',reqOptions)
+                            .then(response => response.json())
+                            .then(dat => dat.isRegisterSuccessed);
 
-            // 1. vailidity check => fetch to server 
-            if (isVaild()){
-                fetch('http://localhost:3006/auth/registerBtn',reqOptions)
-                    .then(response => response.text())
-                    .then(text => console.log(text));
-            } else{
-                id.value = '';
-                pw.value = '';
-                pw2.value = '';
-            };
-        });
+
+                    } else{
+                        id.value = '';
+                        pw.value = '';
+                        pw2.value = '';
+                    };
+                } else if(overlapCheckStatus && isIdOverlap){
+                    alert('Id가 중복입니다.')
+                } else if (!overlapCheckStatus){
+                    alert('Id중복 체크를 해주세요')
+                } else{
+                    alert('^^ㅣ발')
+                }
+                
+
+
+            });
+       
+        
 
 
 

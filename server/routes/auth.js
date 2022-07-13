@@ -37,12 +37,36 @@ router.post('/login', function(req, res, next) {
 });
 
 
-router.post('/register',function(req,res,next){
-    const loginData = req.body;
-    // 중복체크 구현해야함.
-    res.send('회원가입 완료^^')
+router.post('/register/idoverlapcheck',function(req,res,next){
+    const overlapCheckData = req.body;
+    db.query(`SELECT * FROM users WHERE userId = ?`,[overlapCheckData.id],function(err,user){
+        if (user[0]){
+            console.log('1')
+            res.send({"isIdOverlap":true});
+        } else {
+            console.log('2')
+            res.send({"isIdOverlap":false});
+        }
+    })
 
 })
+
+
+router.post('/register',function(req,res,next){
+        const registerData = req.body;
+        db.query(`INSERT INTO users (userId,userPw) VALUES (?,?)`,[registerData.id,registerData.pw],function(err,result){
+            if (result){
+                res.send({"isRegisterSuccessed":true})
+            } else {
+                // 추가 실패시 
+                res.send({"isRegisterSuccessed":false})
+            }
+        })
+    
+
+})
+
+
 
 
 
